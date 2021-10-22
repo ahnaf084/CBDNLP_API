@@ -9,10 +9,10 @@ category = ['Body shaming', 'Geopolitical', 'Hate speech', 'Political', 'Profani
             'Troll']
 
 model = load_model(
-    "C:\\Users\\ahnaf\\PycharmProjects\\Test-1\\CyberbullyingDetection.h5")
+    "CyberbullyingDetection.h5")
 # model.summary()
 
-with open('C:\\Users\\ahnaf\\PycharmProjects\\Test-1\\tokenizer.pickle', 'rb') as handle:
+with open('tokenizer.pickle', 'rb') as handle:
     tokenizer = pickle.load(handle)
 
 app = Flask(__name__)
