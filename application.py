@@ -1,7 +1,7 @@
 import pickle
 
 import numpy as np
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 
@@ -15,10 +15,10 @@ model = load_model(
 with open('tokenizer.pickle', 'rb') as handle:
     tokenizer = pickle.load(handle)
 
-app = Flask(__name__)
+application = Flask(__name__)
 
 
-@app.route('/predict', methods=['POST'])
+@application.route('/predict', methods=['POST'])
 def predict():
     json_ = request.json
     comm = [json_['content']]
@@ -39,4 +39,4 @@ def predict():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    application.run(host='0.0.0.0', port=8080)
