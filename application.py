@@ -1,7 +1,8 @@
 import pickle
 
 import numpy as np
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify
+from flask_cors import CORS
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 
@@ -16,7 +17,7 @@ with open('tokenizer.pickle', 'rb') as handle:
     tokenizer = pickle.load(handle)
 
 application = Flask(__name__)
-
+CORS(application)
 
 @application.route('/predict', methods=['POST'])
 def predict():
