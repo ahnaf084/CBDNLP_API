@@ -9,10 +9,10 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 category = ['Geopolitical', 'Hate speech', 'Personal attack', 'Political', 'Profanity', 'Religious', 'Sexual harassment']
 
 model = load_model(
-    "C:\\Users\\ahnaf\\PycharmProjects\\Test-1\\CyberbullyingDetection.h5")
+    "CyberbullyingDetection.h5")
 # model.summary()
 
-with open('C:\\Users\\ahnaf\\PycharmProjects\\Test-1\\tokenizer.pickle', 'rb') as handle:
+with open('tokenizer.pickle', 'rb') as handle:
     tokenizer = pickle.load(handle)
 
 application = Flask(__name__)
