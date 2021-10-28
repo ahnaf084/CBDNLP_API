@@ -6,18 +6,18 @@ from flask_cors import CORS
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 
-category = ['Body shaming', 'Geopolitical', 'Hate speech', 'Political', 'Profanity', 'Religious', 'Sexual harassment',
-            'Troll']
+category = ['Geopolitical', 'Hate speech', 'Personal attack', 'Political', 'Profanity', 'Religious', 'Sexual harassment']
 
 model = load_model(
-    "CyberbullyingDetection.h5")
+    "C:\\Users\\ahnaf\\PycharmProjects\\Test-1\\CyberbullyingDetection.h5")
 # model.summary()
 
-with open('tokenizer.pickle', 'rb') as handle:
+with open('C:\\Users\\ahnaf\\PycharmProjects\\Test-1\\tokenizer.pickle', 'rb') as handle:
     tokenizer = pickle.load(handle)
 
 application = Flask(__name__)
 CORS(application)
+
 
 @application.route('/predict', methods=['POST'])
 def predict():
@@ -26,7 +26,7 @@ def predict():
 
     sentence = comm
     sequences = tokenizer.texts_to_sequences(sentence)
-    padded = pad_sequences(sequences, maxlen=1005, padding='post', truncating='post')
+    padded = pad_sequences(sequences, maxlen=1334, padding='post', truncating='post')
     prediction_main = model.predict(padded)
 
     i = 0
@@ -40,4 +40,4 @@ def predict():
 
 
 if __name__ == '__main__':
-    application.run(host='0.0.0.0', port=8080)
+    application.run(debug=True)
